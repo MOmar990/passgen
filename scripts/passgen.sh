@@ -4,7 +4,7 @@
 # Generates random passwords and manages them in passwords/passwords.txt
 
 PASSWORDS_FILE="passwords/passwords.txt"
-LENGTH=12
+LENGTH=0
 
 # Create passwords directory if it doesn't exist
 mkdir -p passwords
