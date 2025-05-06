@@ -1,11 +1,22 @@
-# Ignore temporary files
+# System and editor files
+.DS_Store
+*.swp
+*.swo
+.vscode/
+.idea/
 *.log
+
+# Temporary files
 *.tmp
 *.bak
+*.backup
 
-# Ignore macOS files
-.DS_Store
+# Project-specific
+passwords/
+passwords.txt
 
-# Ignore passwords content
-passwords/*
-!passwords/.gitkeep
+# macOS and Linux-specific
+Thumbs.db
+desktop.ini
+.*.swp
+.*.swo
