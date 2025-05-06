@@ -80,7 +80,7 @@ case "$1" in
     list_passwords
     ;;
   *)
-    echo "Usage: $0 {generate <label> [length] [--no-symbols | --uppercase-only] | list}"
+    echo "Usage: $0 {generate <label> [length] [--no-symbols] [--uppercase-only] | list}"
     exit 1
     ;;
 esac
