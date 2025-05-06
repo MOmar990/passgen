@@ -4,7 +4,7 @@
 # Generates random passwords and manages them in passwords/passwords.txt
 
 PASSWORDS_FILE="passwords/passwords.txt"
-LENGTH=12
+DEFAULT_LENGTH=12
 
 # Create passwords directory if it doesn't exist
 mkdir -p passwords
@@ -16,10 +16,19 @@ generate_password() {
 
 # Function to save a password
 save_password() {
+  local label="$1"
+  local length="$2"
+  if [ -z "$length" ]; then
+    length="$DEFAULT_LENGTH"
+  fi
+  if ! [[ "$length" =~ ^[0-9]+$ ]] || [ "$length" -le 0 ]; then
+    echo "Error: Length must be a positive number."
+    exit 1
+  fi
   timestamp=$(date '+%Y-%m-%d %H:%M:%S')
-  password=$(generate_password "$LENGTH")
-  echo "$timestamp | $1 | $password" >> "$PASSWORDS_FILE"
-  echo "Generated and saved password for $1: $password"
+  password=$(generate_password "$length")
+  echo "$timestamp | $label | $password" >> "$PASSWORDS_FILE"
+  echo "Generated and saved password for $label: $password"
 }
 
 # Function to list passwords
@@ -34,13 +43,13 @@ list_passwords() {
 # Main script
 case "$1" in
   generate)
-    save_password "$2"
+    save_password "$2" "$3"
     ;;
   list)
     list_passwords
     ;;
   *)
-    echo "Usage: $0 {generate <label> | list}"
+    echo "Usage: $0 {generate <label> [length] | list}"
     exit 1
     ;;
 esac
