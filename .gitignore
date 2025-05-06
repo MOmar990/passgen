@@ -1,0 +1,11 @@
+# Ignore temporary files
+*.log
+*.tmp
+*.bak
+
+# Ignore macOS files
+.DS_Store
+
+# Ignore passwords content
+passwords/*
+!passwords/.gitkeep
